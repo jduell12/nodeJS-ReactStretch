@@ -32,8 +32,20 @@ const ProjectCard = (props) => {
     history.push(`/edit/`);
   };
 
+  const goToActions = () => {
+    const projectInfo = {
+      id: id,
+      name: name,
+      description: description,
+      completed: completed,
+    };
+
+    setProjectInfo(projectInfo);
+    history.push("/actions");
+  };
+
   return (
-    <div>
+    <div onClick={() => goToActions()}>
       <h2>Name: {name}</h2>
       <h3>Project #{id} </h3>
       <p>Description: {description}</p>
