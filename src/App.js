@@ -22,9 +22,9 @@ function App() {
 
   return (
     <div className="App">
-      <Link to="/add">
-        <button>Add a Project</button>
-      </Link>
+      <Link to="/">Home</Link>
+      <Link to="/add">Add a Project</Link>
+      <Link to="/projects">Project Dashboard</Link>
       <Switch>
         <ProjectContext.Provider value={{ projectInfo, setProjectInfo }}>
           <Route exact path="/projects">
@@ -49,7 +49,6 @@ function App() {
           </Route>
         </ProjectContext.Provider>
       </Switch>
-      <Link to="/">Home</Link>
     </div>
   );
 }

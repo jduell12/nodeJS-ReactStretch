@@ -24,16 +24,21 @@ const ProjectActions = () => {
       <h2>Project #{id}</h2>
       <p>Description: {description}</p>
       {completed ? <p>Completed: Yes</p> : <p>Completed: No</p>}
-      {actions.map((action) => {
-        return (
-          <>
-            <h3>Description</h3>
-            <p key={action.id}>{action.description}</p>
-            <h4>Notes</h4>
-            <p>{action.notes}</p>
-          </>
-        );
-      })}
+      <h2>Actions</h2>
+      {actions ? (
+        actions.map((action) => {
+          return (
+            <>
+              <h3>Description</h3>
+              <p key={action.id}>{action.description}</p>
+              <h4>Notes</h4>
+              <p>{action.notes}</p>
+            </>
+          );
+        })
+      ) : (
+        <p>No Actions on this Project Yet</p>
+      )}
     </div>
   );
 };

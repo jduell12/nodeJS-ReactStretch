@@ -45,14 +45,13 @@ const ProjectCard = (props) => {
   };
 
   return (
-    <div onClick={() => goToActions()}>
-      <h2>Name: {name}</h2>
-      <h3>Project #{id} </h3>
-      <p>Description: {description}</p>
-      {completed ? <p>Completed: Yes</p> : <p>Completed: No</p>}
+    <>
+      <div onClick={() => goToActions()}>
+        <h2>Name: {name}</h2>
+      </div>
       <button onClick={() => EditProject()}>Edit Project</button>
       <button onClick={() => deleteProject()}>Delete Project</button>
-    </div>
+    </>
   );
 };
 
