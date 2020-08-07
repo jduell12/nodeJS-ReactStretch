@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { BASE_URL } from "../constants";
 
 //context
 import { ProjectContext } from "../context/ProjectContext";
@@ -22,10 +23,39 @@ const EditProject = () => {
     setFormValues(projectInfo);
   }, [projectInfo]);
 
-  const changeHandler = (event) => {};
+  const changeHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    if (name === "completed") {
+      if (value === "true") {
+        setFormValues({
+          ...formValues,
+          [name]: true,
+        });
+      } else {
+        setFormValues({
+          ...formValues,
+          [name]: false,
+        });
+      }
+    } else {
+      setFormValues({
+        ...formValues,
+        [name]: value,
+      });
+    }
+  };
 
   const submitForm = (event) => {
     event.preventDefault();
+
+    axios
+      .put(`${BASE_URL}/${projectInfo.id}`, formValues)
+      .then((res) => {
+        return history.push("/projects");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -60,13 +90,10 @@ const EditProject = () => {
             id="completedInput"
             name="completed"
             value={formValues.completed}
+            onChange={changeHandler}
           >
-            <option value="true" onChange={changeHandler}>
-              Yes
-            </option>
-            <option value="false" onChange={changeHandler}>
-              No
-            </option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
           </select>
         </label>
 
