@@ -7,6 +7,7 @@ import { ProjectContext } from "./context/ProjectContext";
 //components
 import Projects from "./components/Projects";
 import Edit from "./components/EditProject";
+import Add from "./components/AddProject";
 
 function App() {
   const history = useHistory();
@@ -20,6 +21,9 @@ function App() {
 
   return (
     <div className="App">
+      <Link to="/add">
+        <button>Add a Project</button>
+      </Link>
       <Switch>
         <ProjectContext.Provider value={{ projectInfo, setProjectInfo }}>
           <Route exact path="/projects">
@@ -27,6 +31,9 @@ function App() {
           </Route>
           <Route exact path="/edit/">
             <Edit />
+          </Route>
+          <Route exact path="/add">
+            <Add />
           </Route>
           <Route exact path="/">
             <div>
