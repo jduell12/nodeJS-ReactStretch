@@ -22,7 +22,7 @@ function App() {
       <Switch>
         <ProjectContext.Provider value={{ projectInfo, setProjects }}>
           <Route exact path="/projects">
-            <Projects />
+            <Projects queryKey={"projects"} />
           </Route>
           <Route exact path="/">
             <div>
