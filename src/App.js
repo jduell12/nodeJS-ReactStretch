@@ -6,6 +6,7 @@ import { ProjectContext } from "./context/ProjectContext";
 
 //components
 import Projects from "./components/Projects";
+import Edit from "./components/EditProject";
 
 function App() {
   const history = useHistory();
@@ -23,6 +24,9 @@ function App() {
         <ProjectContext.Provider value={{ projectInfo, setProjects }}>
           <Route exact path="/projects">
             <Projects queryKey={"projects"} />
+          </Route>
+          <Route exact path="/projects/:id">
+            <Edit />
           </Route>
           <Route exact path="/">
             <div>

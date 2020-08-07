@@ -2,6 +2,9 @@ import React from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 
+//components
+import Card from "./ProjectCard";
+
 const Projects = ({ queryKey }) => {
   const projectList = useQuery(queryKey, () => {
     return axios
@@ -17,6 +20,9 @@ const Projects = ({ queryKey }) => {
   ) : (
     <div>
       <h1>Project List</h1>
+      {projectList.data.map((project) => {
+        return <Card key={project.id} project={project} />;
+      })}
     </div>
   );
 };
