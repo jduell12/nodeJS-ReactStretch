@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { BASE_URL } from "../constants.js";
+import EditProject from "./EditProject.js";
+
+//context
+import { ProjectContext } from "../context/ProjectContext";
 
 const ProjectCard = (props) => {
   const { id, name, description, completed } = props.project;
   const history = useHistory();
+  const { setProjectInfo } = useContext(ProjectContext);
 
   const deleteProject = () => {
     axios
-      .delete(`http://localhost:8000/projects/${id}`)
+      .delete(`${BASE_URL}/${id}`)
       .then((res) => console.log("Successfully deleted"))
       .catch((err) => console.log(err))
       .finally(history.push("/"));
+  };
+
+  const EditProject = () => {
+    const projectInfo = {
+      id: id,
+      name: name,
+      description: description,
+      completed: completed,
+    };
+
+    setProjectInfo(projectInfo);
+
+    history.push(`/edit/`);
   };
 
   return (
@@ -20,7 +39,7 @@ const ProjectCard = (props) => {
       <h3>Project #{id} </h3>
       <p>Description: {description}</p>
       {completed ? <p>Completed: Yes</p> : <p>Completed: No</p>}
-      <button>Edit Project</button>
+      <button onClick={() => EditProject()}>Edit Project</button>
       <button onClick={() => deleteProject()}>Delete Project</button>
     </div>
   );

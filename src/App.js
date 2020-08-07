@@ -11,7 +11,7 @@ import Edit from "./components/EditProject";
 function App() {
   const history = useHistory();
 
-  const [projectInfo, setProjects] = useState({
+  const [projectInfo, setProjectInfo] = useState({
     id: "",
     name: "",
     description: "",
@@ -21,11 +21,11 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <ProjectContext.Provider value={{ projectInfo, setProjects }}>
+        <ProjectContext.Provider value={{ projectInfo, setProjectInfo }}>
           <Route exact path="/projects">
             <Projects queryKey={"projects"} />
           </Route>
-          <Route exact path="/projects/:id">
+          <Route exact path="/edit/">
             <Edit />
           </Route>
           <Route exact path="/">

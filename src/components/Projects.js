@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
+import { BASE_URL } from "../constants";
 
 //components
 import Card from "./ProjectCard";
@@ -8,7 +9,7 @@ import Card from "./ProjectCard";
 const Projects = ({ queryKey }) => {
   const projectList = useQuery(queryKey, () => {
     return axios
-      .get("http://localhost:8000/projects")
+      .get(BASE_URL)
       .then((res) => res.data.projects)
       .catch((err) => console.log(err));
   });
